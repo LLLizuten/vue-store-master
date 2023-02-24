@@ -187,7 +187,6 @@ export default {
     logout() {
       this.visible = false;
       // 清空本地登录信息
-      json
       localStorage.setItem("user", "");
       // 清空vuex登录信息
       this.setUser("");
