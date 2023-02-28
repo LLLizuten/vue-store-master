@@ -4,7 +4,7 @@
     <div class="page-header">
       <div class="title">
         <p>{{ productDetails.product_name }}</p>
-        <div class="list">
+        <!-- <div class="list">
           <ul>
             <li>
               <router-link to>概述</router-link>
@@ -16,7 +16,7 @@
               <router-link to>用户评价</router-link>
             </li>
           </ul>
-        </div>
+        </div> -->
       </div>
     </div>
     <!-- 头部END -->
@@ -70,15 +70,15 @@
         <!-- 内容区底部按钮END -->
         <div class="pro-policy">
           <ul>
-            <li>
+            <!-- <li>
               <i class="el-icon-circle-check"></i> 小米自营
-            </li>
+            </li> -->
             <li>
-              <i class="el-icon-circle-check"></i> 小米发货
+              <i class="el-icon-circle-check"></i> 品质优选
             </li>
-            <li>
+            <!-- <li>
               <i class="el-icon-circle-check"></i> 7天无理由退货
-            </li>
+            </li> -->
             <li>
               <i class="el-icon-circle-check"></i> 7天价格保护
             </li>
@@ -132,7 +132,7 @@ export default {
     // 获取商品图片
     async getDetailsPicture(val) {
       try {
-        let res = await this.$axios.post("/api/product/pictures", { productID: val })
+        let res = await this.$axios.post("/api/product/pictures", { productID: val });
         this.productPicture = res.data.data;
       } catch (err) {
         console.log("出错了");

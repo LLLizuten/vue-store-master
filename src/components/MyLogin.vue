@@ -84,9 +84,38 @@ export default {
     ...mapActions(["setUser", "setShowLogin"]),
     Login() {
       // 通过element自定义表单校验规则，校验用户输入的用户信息
-      this.$refs["ruleForm"].validate(valid => {
+      this.$refs["ruleForm"].validate ( async (valid) => {
         //如果通过校验开始登录
         if (valid) {
+          try {
+            let res = await this.$axios.post("/api/user/login", {
+              userName: this.LoginUser.name,
+              password: this.LoginUser.pass
+            });
+            // “001”代表登录成功，其他的均为失败
+            if (res.data.code === "001") {
+                // 隐藏登录组件
+                this.isLogin = false;
+                // 登录信息存到本地
+                let user = JSON.stringify(res.data.data);
+                localStorage.setItem("user", user);
+                // 登录信息存到vuex
+                this.setUser(res.data.data);
+                // 弹出通知框提示登录成功信息
+                this.notifySucceed(res.data.msg);
+              } else {
+                // 清空输入框的校验状态
+                this.$refs["ruleForm"].resetFields();
+                // 弹出通知框提示登录失败信息
+                this.notifyError(res.data.msg);
+              }
+          } catch (error) {
+            console.log("登录失败");
+            return error;
+          }
+          
+          /**
+           * 
           this.$axios
             .post("/api/user/login", {
               userName: this.LoginUser.name,
@@ -114,6 +143,7 @@ export default {
             .catch(err => {
               return Promise.reject(err);
             });
+            */
         } else {
           return false;
         }

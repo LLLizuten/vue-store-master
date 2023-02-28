@@ -73,7 +73,8 @@ export default {
           totalPrice += temp.price * temp.num;
         }
       }
-      return totalPrice;
+      return Number(totalPrice).toFixed(2);
+      // return totalPrice;
     }
   },
   mutations: {
