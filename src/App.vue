@@ -157,7 +157,10 @@ export default {
           .then(res => {
             if (res.data.code === "001") {
               // 001 为成功, 更新vuex购物车状态
-              this.setShoppingCart(res.data.data);
+              if(res.data.data != null) {
+                this.setShoppingCart(res.data.data);
+              }
+              
             } else {
               // 提示失败信息
               this.notifyError(res.data.msg);

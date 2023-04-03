@@ -142,7 +142,3 @@ npm run build
 ![](https://raw.githubusercontent.com/hai-27/vue-store/master/public/screenshots/register.png)
 
 
-
-**作者** [hai-27](https://github.com/hai-27)
-
-2020年3月8日
